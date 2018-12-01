@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">OurVisitor</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="msg">Ok</string>
+    <string-array name="branch_select">
+        <item>Branch</item>
+        <item>Branch 1</item>
+        <item>Branch 2</item>
+        <item>Branch 3</item>
+        <item>Branch 4</item>
+        <item>Branch 5</item>
+        <item>Branch 6</item>
+    </string-array>
+
+    <string-array name="event_select">
+        <item>Event</item>
+        <item>Event 1</item>
+        <item>Event 2</item>
+        <item>Event 3</item>
+        <item>Event 4</item>
+        <item>Event 5</item>
+        <item>Event 6</item>
+    </string-array>
+    <string name="branch_hint">Branch</string>
+    <string name="event_hint">Event</string>
+</resources>

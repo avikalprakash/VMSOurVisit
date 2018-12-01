@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:background="@drawable/bg">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+<ImageView
+    android:layout_width="20sp"
+    android:layout_height="20sp"
+    android:layout_alignParentRight="true"
+    android:layout_marginTop="20dp"
+    android:src="@drawable/close"
+    android:id="@+id/close"
+    android:layout_marginRight="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign Up"
+            android:textColor="#ffffff"
+            android:layout_below="@+id/close"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:textSize="15dp"
+            android:id="@+id/title"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/title"
+            android:id="@+id/orgLayout"
+            android:background="@drawable/reactangle_btn">
+            <ImageView
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:src="@drawable/org"
+                android:id="@+id/img1"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/img1"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:hint="Organisation Name"
+                android:textColor="#000000"
+                android:backgroundTint="@android:color/transparent"
+                android:id="@+id/organisation_name"
+                android:textColorHint="@color/gray"
+                android:layout_marginRight="10dp"
+                />
+        </RelativeLayout>
+
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/emailLayout"
+            android:id="@+id/passLayout"
+            android:background="@drawable/reactangle_btn">
+            <ImageView
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:src="@drawable/pass"
+                android:id="@+id/img3"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/img3"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:textColor="#000000"
+                android:backgroundTint="@android:color/transparent"
+                android:id="@+id/password"
+                android:textColorHint="@color/gray"
+                android:layout_marginRight="10dp"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/orgLayout"
+            android:id="@+id/emailLayout"
+            android:background="@drawable/reactangle_btn">
+            <ImageView
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:src="@drawable/email"
+                android:id="@+id/img4"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/img4"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:textColor="#000000"
+                android:backgroundTint="@android:color/transparent"
+                android:id="@+id/email"
+                android:textColorHint="@color/gray"
+                android:layout_marginRight="10dp"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/passLayout"
+            android:id="@+id/mobileLayout"
+            android:background="@drawable/reactangle_btn">
+            <ImageView
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:src="@drawable/mobile"
+                android:id="@+id/img5"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/img5"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:hint="Mobile"
+                android:inputType="number"
+                android:textColor="#000000"
+                android:backgroundTint="@android:color/transparent"
+                android:id="@+id/mobile"
+                android:textColorHint="@color/gray"
+                android:layout_marginRight="10dp"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            android:layout_below="@+id/mobileLayout"
+            android:id="@+id/countryLayout"
+            android:background="@drawable/reactangle_btn">
+            <ImageView
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:src="@drawable/location"
+                android:id="@+id/img6"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/img6"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:hint="Country"
+                android:inputType="text"
+                android:textColor="#000000"
+                android:backgroundTint="@android:color/transparent"
+                android:id="@+id/Country"
+                android:textColorHint="@color/gray"
+                android:layout_marginRight="10dp"
+                />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/countryLayout"
+            android:id="@+id/cityLayout"
+            android:visibility="gone"
+            android:background="@drawable/reactangle_btn">
+            <ImageView
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:src="@drawable/location"
+                android:id="@+id/img9"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/img9"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:hint="City"
+                android:inputType="text"
+                android:textColor="#000000"
+                android:backgroundTint="@android:color/transparent"
+                android:id="@+id/City"
+                android:textColorHint="@color/gray"
+                android:layout_marginRight="10dp"
+                />
+        </RelativeLayout>
+
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/cityLayout"
+            android:id="@+id/zipcodeLayout"
+            android:background="@drawable/reactangle_btn">
+            <ImageView
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:src="@drawable/location"
+                android:id="@+id/img8"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/img8"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:hint="Zip Code"
+                android:inputType="number"
+                android:textColor="#000000"
+                android:backgroundTint="@android:color/transparent"
+                android:id="@+id/zipcode"
+                android:textColorHint="@color/gray"
+                android:layout_marginRight="10dp"
+                />
+        </RelativeLayout>
+
+
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:id="@+id/signup"
+            android:layout_below="@+id/zipcodeLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="Sign Up"
+            android:textColor="#ffffff"
+            android:textAllCaps="false"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/btn_bg_yellow"/>
+
+    </RelativeLayout>
+</ScrollView>

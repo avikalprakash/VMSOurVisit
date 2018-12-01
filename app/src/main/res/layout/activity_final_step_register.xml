@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FirstStepRegister"
+    android:background="@drawable/bg">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/close"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/close" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/close"
+            android:layout_marginTop="20dp"
+            android:text="Final Step"
+            android:id="@+id/title"
+            android:gravity="center_horizontal"
+            android:textColor="#ffffff"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:layout_marginTop="20dp"
+            android:id="@+id/text2"
+            android:text="Required Information *"
+            android:gravity="center_horizontal"
+            android:textColor="#ffffff"
+            android:textSize="16dp"/>
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/text2"
+            android:id="@+id/visitLayout"
+            android:background="@drawable/reactangle_btn">
+            <ImageView
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:src="@drawable/visitor_purpose"
+                android:id="@+id/img2"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/img2"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:hint="Visit Purpose"
+                android:inputType="text"
+                android:textColor="#000000"
+                android:backgroundTint="@android:color/transparent"
+                android:id="@+id/visitor_purpose"
+                android:textColorHint="@color/gray"
+                android:layout_marginRight="10dp"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/visitLayout"
+            android:id="@+id/countryLayout"
+            android:background="@drawable/reactangle_btn">
+            <ImageView
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:src="@drawable/location"
+                android:id="@+id/img3"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"/>
+
+            <EditText
+                android:id="@+id/countryEvent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:popupBackground="@color/white"
+                android:hint="Country"
+                android:textSize="18sp"
+                android:backgroundTint="@android:color/transparent"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="50dp"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/countryLayout"
+            android:id="@+id/stateLayout"
+            android:background="@drawable/reactangle_btn">
+            <ImageView
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:src="@drawable/location"
+                android:id="@+id/img4"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"/>
+
+            <EditText
+                android:id="@+id/stateEvent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:popupBackground="@color/white"
+                android:hint="State"
+                android:textSize="18sp"
+                android:backgroundTint="@android:color/transparent"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="50dp"
+                />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/stateLayout"
+            android:id="@+id/cityLayout"
+            android:background="@drawable/reactangle_btn">
+            <ImageView
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:src="@drawable/location"
+                android:id="@+id/img5"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"/>
+
+            <EditText
+                android:id="@+id/cityEvent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:popupBackground="@color/white"
+                android:hint="City"
+                android:textSize="18sp"
+                android:backgroundTint="@android:color/transparent"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="50dp"
+                />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/cityLayout"
+            android:id="@+id/addressLayout"
+            android:background="@drawable/reactangle_btn">
+            <ImageView
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:src="@drawable/location"
+                android:id="@+id/img6"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/img6"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:hint="Address"
+                android:inputType="text"
+                android:textColor="#000000"
+                android:backgroundTint="@android:color/transparent"
+                android:id="@+id/address"
+                android:textColorHint="@color/gray"
+                android:layout_marginRight="10dp"
+                />
+        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/addressLayout"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/genderText"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/addressLayout"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:weightSum="1.0"
+            android:id="@+id/linear"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="0.5"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:text="Male"
+                android:id="@+id/male"
+                android:textColor="#000000"
+                android:textAllCaps="false"
+                android:background="@drawable/reactangle_btn"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="0.5"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:text="Female"
+                android:id="@+id/female"
+                android:textColor="#000000"
+                android:textAllCaps="false"
+                android:background="@drawable/reactangle_btn"/>
+        </LinearLayout>
+
+
+
+
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:id="@+id/submit"
+            android:layout_below="@+id/linear"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="Submit"
+            android:textColor="#ffffff"
+            android:textAllCaps="false"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/btn_bg_yellow"/>
+
+
+    </RelativeLayout>
+
+</ScrollView>

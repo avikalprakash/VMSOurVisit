@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:background="@drawable/bg">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="@drawable/login_bg_item"
+            android:id="@+id/linear">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:src="@drawable/logo"/>
+        </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/branchLayout"
+        android:visibility="invisible"
+        android:layout_centerVertical="true"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:background="@drawable/reactangle_btn">
+        <!--android:entries="@array/branch_select"-->
+
+        <Spinner
+            android:id="@+id/spinnerBranch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:prompt="@string/branch_hint"
+            android:popupBackground="@color/white"
+            android:theme="@style/Spinner"
+            />
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/drop"/>
+    </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="300dp"
+            android:id="@+id/eventLayout"
+            android:visibility="invisible"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:background="@drawable/reactangle_btn">
+
+            <Spinner
+                android:id="@+id/spinnerEvent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:popupBackground="@color/white"
+                android:theme="@style/Spinner"
+                android:saveEnabled="false"
+                />
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/drop"/>
+        </RelativeLayout>
+        
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:id="@+id/Branch_Event_Select"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Please Select your type"
+                android:layout_centerHorizontal="true"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:id="@+id/text"
+                />
+
+            <RadioGroup
+                android:id="@+id/radio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/text"
+                android:layout_marginTop="30dp"
+                android:layout_centerHorizontal="true">
+
+                <RadioButton
+                    android:id="@+id/radioBranch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Branch"
+                    android:buttonTint="@color/yellow"
+                    android:paddingLeft="20dp"
+                    android:layout_marginLeft="30dp"
+                    />
+
+                <RadioButton
+                    android:id="@+id/radioEvent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Event"
+                    android:buttonTint="@color/yellow"
+                    android:paddingLeft="20dp"
+                    android:layout_marginLeft="50dp"/>
+
+            </RadioGroup>
+            <!--<Button
+                android:layout_width="150sp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/radio"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:textAllCaps="false"
+                android:id="@+id/btnType"
+                android:text="Submit"
+                android:background="@drawable/btn_bg_yellow"
+                />-->
+        </RelativeLayout>
+
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:id="@+id/submitBtn"
+            android:layout_below="@+id/eventLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="Submit"
+            android:visibility="invisible"
+            android:textColor="#ffffff"
+            android:textAllCaps="false"
+            android:background="@drawable/btn_bg_yellow"/>
+
+    </RelativeLayout>
+</ScrollView>

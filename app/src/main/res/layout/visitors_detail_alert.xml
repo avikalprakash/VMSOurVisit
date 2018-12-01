@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:layout_marginRight="30dp"
+    android:layout_marginLeft="30dp"
+    android:background="@drawable/alert_bg_custom"
+    >
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:id="@+id/close"
+        android:src="@drawable/close_y"
+        />
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:id="@+id/relative3">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="65sp"
+        android:layout_height="65sp"
+        android:src="@drawable/avatar"
+        android:layout_margin="10dp"
+        android:layout_centerVertical="true"
+        android:id="@+id/profilePic"/>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name Name"
+        android:textSize="12sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toEndOf="@+id/profilePic"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@android:color/black" />
+
+
+    <TextView
+        android:id="@+id/type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:layout_toEndOf="@+id/profilePic"
+        android:layout_marginTop="5dp"
+        android:text="type"
+        android:textSize="12dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/gray" />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_toEndOf="@+id/profilePic"
+        android:layout_below="@+id/type"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/location"/>
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/profilePic"
+        android:layout_below="@+id/type"
+        android:layout_marginTop="5dp"
+        android:text="City, State, Country"
+        android:textSize="12sp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/gray"
+        />
+</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relative3"
+        android:orientation="vertical"
+        android:id="@+id/linear"
+        android:layout_marginTop="30dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="20 Nov 2018, 9:56"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        android:id="@+id/date"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="   robort@gmail.com"
+            android:textColor="#000000"
+            android:id="@+id/emailText"
+            android:drawableLeft="@drawable/email"
+            android:layout_marginTop="15dp"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="    +605544544646"
+            android:textColor="#000000"
+            android:id="@+id/mobileText"
+            android:drawableLeft="@drawable/mobile"
+            android:layout_marginTop="10dp"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="   Kolkata, West Bengal, India"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            android:id="@+id/locationText"
+            android:drawableLeft="@drawable/location"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="   visitor purpose"
+            android:textColor="#000000"
+            android:id="@+id/typeText"
+            android:drawableLeft="@drawable/visitor_purpose"
+            android:layout_marginTop="10dp"
+            android:textSize="12sp"
+            />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear"
+        android:layout_marginTop="15dp"
+        android:scaleType="center"
+        android:src="@drawable/card_eg"/>
+</RelativeLayout>

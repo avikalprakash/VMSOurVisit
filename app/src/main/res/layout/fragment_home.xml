@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="@drawable/login_bg_item"
+            android:id="@+id/linear"
+            >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:src="@drawable/logo"/>
+        </LinearLayout>
+
+
+      <LinearLayout
+          android:layout_width="220dp"
+          android:layout_height="100dp"
+          android:layout_below="@+id/linear"
+          android:layout_marginTop="30dp"
+          android:background="@drawable/alert_bg"
+          android:layout_centerHorizontal="true"
+          android:orientation="vertical"
+          android:id="@+id/visitorLayout">
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_horizontal"
+              android:text="Total Visitors"
+              android:textColor="#000000"
+              android:layout_marginTop="20dp"
+              android:textSize="15dp"
+              android:textStyle="italic"/>
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_horizontal"
+              android:text="19"
+              android:textColor="@color/yellow"
+              android:layout_marginTop="10dp"
+              android:textSize="20dp"
+              android:textStyle="italic"/>
+      </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="220dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/visitorLayout"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/alert_bg"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:id="@+id/checkedLayout">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Today's Visitors"
+            android:textColor="#000000"
+            android:layout_marginTop="20dp"
+            android:textSize="15dp"
+            android:textStyle="italic"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="35"
+            android:textColor="@color/yellow"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            android:textStyle="italic"/>
+    </LinearLayout>
+
+
+
+    <Button
+            android:layout_width="165dp"
+            android:layout_height="45dp"
+            android:id="@+id/registerVisitors"
+            android:layout_below="@+id/remember_me"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="45dp"
+            android:text="Register Visitors"
+            android:textColor="#ffffff"
+            android:textAllCaps="false"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/btn_bg_yellow"/>
+</RelativeLayout>
