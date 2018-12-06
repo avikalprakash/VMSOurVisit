@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -20,6 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
@@ -31,8 +33,12 @@ import java.util.Map;
 import lueorganisation.winmall.via.ourvisitor.BranchEventSelection;
 import lueorganisation.winmall.via.ourvisitor.FirstStepRegister;
 import lueorganisation.winmall.via.ourvisitor.LoginActivity;
+import lueorganisation.winmall.via.ourvisitor.MainActivity;
 import lueorganisation.winmall.via.ourvisitor.R;
 import lueorganisation.winmall.via.ourvisitor.TotalVisitorActivity;
+import lueorganisation.winmall.via.ourvisitor.Urls.Urls;
+import lueorganisation.winmall.via.ourvisitor.utils.SaveAccessToken;
+import lueorganisation.winmall.via.ourvisitor.utils.SaveBranchEvent;
 
 
 /**
@@ -43,6 +49,10 @@ public class HomeFragment extends Fragment {
     Button registerVisitors;
     LinearLayout visitorLayout;
     ProgressDialog pDialog;
+    TextView todayTotalVisitor, totalVisitor;
+    String setType="";
+    String BranchID="";
+    String EventID="";
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -54,6 +64,8 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         registerVisitors = view.findViewById(R.id.registerVisitors);
         visitorLayout = view.findViewById(R.id.visitorLayout);
+        totalVisitor = view.findViewById(R.id.totalVisitor);
+        todayTotalVisitor = view.findViewById(R.id.todayTotalVisitor);
         visitorLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,44 +80,61 @@ public class HomeFragment extends Fragment {
             }
         });
 
-//        GetDetails();
+        loadVisitors();
 
         return view;
     }
 
 
-    public void GetDetails() {
 
 
-        pDialog = new ProgressDialog(getActivity());
-        pDialog.setMessage("loading...");
-        pDialog.show();
-        Map<String, String> postParam = new HashMap<String, String>();
+    private void loadVisitors() {
+        //getting the progressbar
+        final String access_token = SaveAccessToken.getInstance(getActivity()).getUserId();
+        String VisitType_Branch_event = SaveBranchEvent.getInstance(getActivity()).getType();
+        final ProgressDialog progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+        if (VisitType_Branch_event.equals("1")){
+            BranchID = SaveBranchEvent.getInstance(getActivity()).getBranch();
+            setType = "branch_id="+BranchID;
+        }else if (VisitType_Branch_event.equals("2")) {
 
-        postParam.put("email", "");
+            EventID = SaveBranchEvent.getInstance(getActivity()).getEvent();
+            setType = "event_id="+EventID;
+        }
 
-
-
-        final JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
-                "http://condoassist2u.com/eatapp/API/special_promotion_detail.php", new JSONObject(postParam),
-                new Response.Listener<JSONObject>() {
-
+        //creating a string request to send request to the url
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Urls.DASHBOARD_COUNTER+setType,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONObject jobj) {
-                        pDialog.dismiss();
-                        Log.d("tag", jobj.toString());
+                    public void onResponse(String response) {
+                        //hiding the progressbar after completion
+
+                        progressDialog.dismiss();
 
                         try {
+                            //getting the whole json object from the response
+                            JSONObject obj = new JSONObject(response);
 
-                            String check = jobj.getString("error");
+                            boolean check = obj.getBoolean("success");
 
-                            if (check.equals("false"))
-                            {
+                            if (check){
+                                JSONObject jsonObject = obj.getJSONObject("result");
+                                String tVisitor = jsonObject.getString("total_visitor");
+                                String ttVisitor = jsonObject.getString("today_visitor");
 
-                            }
 
-                            else
-                            {
+
+                                totalVisitor.setText(tVisitor);
+                                todayTotalVisitor.setText(ttVisitor);
+
+
+
+                            }else {
+
+                                String name = obj.getString("msg");
+
 
                             }
 
@@ -114,31 +143,34 @@ public class HomeFragment extends Fragment {
                         }
 
                     }
-                }, new Response.ErrorListener() {
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //displaying the error in toast if occurrs
+                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
 
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                pDialog.dismiss();
-                VolleyLog.d("tag", "Error: " + error.getMessage());
-                //  hideProgressDialog();
-            }
-        }) {
 
-            /**
-             * Passing some request headers
-             */
+
+                }
+
+        )
+        {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Content-Type", "application/json; charset=utf-8");
-                return headers;
+                Map<String, String>  params = new HashMap<String, String>();
+
+                params.put("Content-Type", "application/json");
+                params.put("Access-Token", access_token);
+
+                return params;
             }
         };
+        //creating a request queue
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
 
-        jsonObjReq.setTag("tag");
-        // Adding request to request queue
-        RequestQueue queue = Volley.newRequestQueue(getActivity());
-        queue.add(jsonObjReq);
-
+        //adding the string request to request queue
+        requestQueue.add(stringRequest);
     }
 }

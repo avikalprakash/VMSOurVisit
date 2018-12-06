@@ -23,8 +23,8 @@
     android:layout_marginTop="10dp"
     android:id="@+id/relative3">
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="65sp"
-        android:layout_height="65sp"
+        android:layout_width="75sp"
+        android:layout_height="75sp"
         android:src="@drawable/avatar"
         android:layout_margin="10dp"
         android:layout_centerVertical="true"
@@ -119,6 +119,7 @@
             android:text="   Kolkata, West Bengal, India"
             android:textColor="#000000"
             android:textSize="12sp"
+            android:visibility="gone"
             android:id="@+id/locationText"
             android:drawableLeft="@drawable/location"
             android:layout_marginTop="10dp"/>
@@ -128,7 +129,7 @@
             android:layout_height="wrap_content"
             android:text="   visitor purpose"
             android:textColor="#000000"
-            android:id="@+id/typeText"
+            android:id="@+id/visit_purposeText"
             android:drawableLeft="@drawable/visitor_purpose"
             android:layout_marginTop="10dp"
             android:textSize="12sp"
@@ -137,9 +138,10 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="180sp"
         android:layout_below="@+id/linear"
         android:layout_marginTop="15dp"
         android:scaleType="center"
+        android:id="@+id/cardImage"
         android:src="@drawable/card_eg"/>
 </RelativeLayout>

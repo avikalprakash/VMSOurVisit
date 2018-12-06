@@ -77,6 +77,7 @@ public class SecondStepRegister extends AppCompatActivity {
     String country="";
     String visitor_purpose="";
     boolean isNew=true;
+    int old_id=0;
 
     private File actualImagePic;
     private File actualImageCard;
@@ -105,52 +106,36 @@ public class SecondStepRegister extends AppCompatActivity {
             visitor_type = getIntent().getStringExtra("visitor_type");
         }catch (Exception e){}
 
-        emailText.addTextChangedListener(new TextWatcher() {
+       /* emailText.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public void onClick(View view) {
 
             }
-
+        });*/
+        emailText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (charSequence.toString().length() > 1) {
-
-                    if (text) {
-                        checkVisitorAvailability();
-                    }else {
-
+            public void onFocusChange(View view, boolean b) {
+                    String mobile = moboileText.getText().toString().trim();
+                    if (!mobile.equals("")) {
+                        String m = "mobile";
+                        checkVisitorAvailability(mobile, m);
                     }
-                }
             }
+        });
 
-
+        nameText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void afterTextChanged(Editable editable) {
+            public void onFocusChange(View view, boolean b) {
+                    String email = emailText.getText().toString().trim();
+                    if (!email.equals("")) {
+                        String e = "email";
+                        checkVisitorAvailability(email, e);
+                    }
 
             }
         });
 
 
-        moboileText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (charSequence.toString().length() > 9) {
-
-                   // text=true;
-                }
-            }
-
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,6 +158,7 @@ public class SecondStepRegister extends AppCompatActivity {
 
 
                 if (!isNew) {
+
                     Intent i = new Intent(getApplicationContext(), FinalStepRegister.class);
                     i.putExtra("mobile", mobile);
                     i.putExtra("email", email);
@@ -188,54 +174,83 @@ public class SecondStepRegister extends AppCompatActivity {
                     i.putExtra("country", country);
                     i.putExtra("visitor_purpose", visitor_purpose);
                     i.putExtra("isNew", isNew);
+                    i.putExtra("old_id", String.valueOf(old_id));
                     startActivity(i);
                 } else {
 
+                    if (VisitType_Branch_event.equals("2")){
+                        if (TextUtils.isEmpty(name)) {
+                            nameText.requestFocus();
+                            nameText.setError("This Field Is Mandatory");
+                        } else if (!isValidEmail(email)) {
+                            emailText.requestFocus();
+                            emailText.setError("Invalid Email Id");
+                        } else if (TextUtils.isEmpty(email)) {
+                            emailText.requestFocus();
+                            emailText.setError("This Field Is Mandatory");
+                        } else if (TextUtils.isEmpty(mobile)) {
+                            moboileText.requestFocus();
+                            moboileText.setError("This Field Is Mandatory");
+                        }  else {
 
-                    if (TextUtils.isEmpty(name)) {
-                        nameText.requestFocus();
-                        nameText.setError("This Field Is Mandatory");
-                    } else if (!isValidEmail(email)) {
-                        emailText.requestFocus();
-                        emailText.setError("Invalid Email Id");
-                    } else if (TextUtils.isEmpty(email)) {
-                        emailText.requestFocus();
-                        emailText.setError("This Field Is Mandatory");
-                    } else if (TextUtils.isEmpty(mobile)) {
-                        moboileText.requestFocus();
-                        moboileText.setError("This Field Is Mandatory");
-                    }/* else if (!VisitType_Branch_event.equals("")) {
-                        if (TextUtils.isEmpty(imagePic)) {
-                            if (VisitType_Branch_event.equals("1")) {
-                                Toast.makeText(SecondStepRegister.this, "Please select your image", Toast.LENGTH_SHORT).show();
-                            } else if (VisitType_Branch_event.equals("2")) {
-                                Log.d("", "");
-                            }
-                        } else if (TextUtils.isEmpty(imageCard)) {
-                            if (VisitType_Branch_event.equals("1")) {
-                                Toast.makeText(SecondStepRegister.this, "Please Select your card image", Toast.LENGTH_SHORT).show();
-                            } else if (VisitType_Branch_event.equals("2")) {
-                                Log.d("", "");
-                            }
+                            Intent i = new Intent(getApplicationContext(), FinalStepRegister.class);
+                            i.putExtra("mobile", mobile);
+                            i.putExtra("email", email);
+                            i.putExtra("name", name);
+                            i.putExtra("profile_pic", imagePic);
+                            i.putExtra("card_pic", imageCard);
+                            i.putExtra("visitor_type", visitor_type);
+                            //for auto fill
+                            i.putExtra("gender", gender);
+                            i.putExtra("address", address);
+                            i.putExtra("city", city);
+                            i.putExtra("state", state);
+                            i.putExtra("country", country);
+                            i.putExtra("visitor_purpose", visitor_purpose);
+                            i.putExtra("isNew", isNew);
+                            startActivity(i);
                         }
-                    }*/ else {
 
-                        Intent i = new Intent(getApplicationContext(), FinalStepRegister.class);
-                        i.putExtra("mobile", mobile);
-                        i.putExtra("email", email);
-                        i.putExtra("name", name);
-                        i.putExtra("profile_pic", imagePic);
-                        i.putExtra("card_pic", imageCard);
-                        i.putExtra("visitor_type", visitor_type);
-                        //for auto fill
-                        i.putExtra("gender", gender);
-                        i.putExtra("address", address);
-                        i.putExtra("city", city);
-                        i.putExtra("state", state);
-                        i.putExtra("country", country);
-                        i.putExtra("visitor_purpose", visitor_purpose);
-                        i.putExtra("isNew", isNew);
-                        startActivity(i);
+                    }else if(VisitType_Branch_event.equals("1")){
+                        if (TextUtils.isEmpty(name)) {
+                            nameText.requestFocus();
+                            nameText.setError("This Field Is Mandatory");
+                        } else if (!isValidEmail(email)) {
+                            emailText.requestFocus();
+                            emailText.setError("Invalid Email Id");
+                        } else if (TextUtils.isEmpty(email)) {
+                            emailText.requestFocus();
+                            emailText.setError("This Field Is Mandatory");
+                        } else if (TextUtils.isEmpty(mobile)) {
+                            moboileText.requestFocus();
+                            moboileText.setError("This Field Is Mandatory");
+                        } else if (TextUtils.isEmpty(imagePic)) {
+
+                            Toast.makeText(SecondStepRegister.this, "Please select your image", Toast.LENGTH_SHORT).show();
+
+                        } else if (TextUtils.isEmpty(imageCard)) {
+
+                            Toast.makeText(SecondStepRegister.this, "Please Select your card image", Toast.LENGTH_SHORT).show();
+
+                        } else {
+
+                            Intent i = new Intent(getApplicationContext(), FinalStepRegister.class);
+                            i.putExtra("mobile", mobile);
+                            i.putExtra("email", email);
+                            i.putExtra("name", name);
+                            i.putExtra("profile_pic", imagePic);
+                            i.putExtra("card_pic", imageCard);
+                            i.putExtra("visitor_type", visitor_type);
+                            //for auto fill
+                            i.putExtra("gender", gender);
+                            i.putExtra("address", address);
+                            i.putExtra("city", city);
+                            i.putExtra("state", state);
+                            i.putExtra("country", country);
+                            i.putExtra("visitor_purpose", visitor_purpose);
+                            i.putExtra("isNew", isNew);
+                            startActivity(i);
+                        }
                     }
                 }
             }
@@ -459,20 +474,24 @@ public class SecondStepRegister extends AppCompatActivity {
 
 
 
-    private void checkVisitorAvailability() {
+    private void checkVisitorAvailability(String checkData, String params) {
         //getting the progressbar
 
-        String email = emailText.getText().toString().trim();
-        String name = nameText.getText().toString().trim();
-        String mobile = moboileText.getText().toString().trim();
+        String check="";
 
         final String access_token = SaveAccessToken.getInstance(SecondStepRegister.this).getUserId();
         final ProgressDialog progressDialog = new ProgressDialog(SecondStepRegister.this);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
-        Log.d("url", Urls.CHECK_VISITOR_DATA_EMAIL_MOBILE+mobile);
+        progressDialog.setCancelable(false);
+        if (params.equals("mobile")) {
+            check = "mobile=" + checkData;
+        }else if (params.equals("email")){
+            check = "email=" + checkData;
+        }
+        Log.d("url", Urls.CHECK_VISITOR_DATA_EMAIL_MOBILE+check);
         //creating a string request to send request to the url
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Urls.CHECK_VISITOR_DATA_EMAIL_MOBILE+mobile,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Urls.CHECK_VISITOR_DATA_EMAIL_MOBILE+check,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -488,7 +507,7 @@ public class SecondStepRegister extends AppCompatActivity {
 
                             if (check){
                                 JSONObject jsonObject = obj.getJSONObject("result");
-                                int id = jsonObject.getInt("id");
+                                old_id = jsonObject.getInt("id");
                                 String name = jsonObject.getString("name");
                                 String email = jsonObject.getString("email");
                                 String mobile = jsonObject.getString("mobile");

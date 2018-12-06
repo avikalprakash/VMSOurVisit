@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,49 +7,55 @@
     tools:context=".FirstStepRegister"
     android:background="@drawable/bg">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@drawable/close"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:id="@+id/close" />
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="55sp"
+            android:background="@color/yellow"
+            android:id="@+id/titleLayout">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:text="Visitor Register"
+                android:textColor="@color/white"
+                android:textSize="20sp"/>
+            <ImageView
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20sp"
+                android:id="@+id/close"
+                android:src="@drawable/left_arrow"/>
+
+        </RelativeLayout>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/close"
-            android:layout_marginTop="20dp"
-            android:text="Final Step"
-            android:id="@+id/title"
-            android:gravity="center_horizontal"
-            android:textColor="#ffffff"
-            android:textSize="20dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title"
+            android:layout_below="@+id/titleLayout"
             android:layout_marginTop="20dp"
             android:id="@+id/text2"
+            android:visibility="gone"
             android:text="Required Information *"
             android:gravity="center_horizontal"
             android:textColor="#ffffff"
             android:textSize="16dp"/>
-
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@+id/titleLayout">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="80dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_below="@+id/text2"
+            android:layout_marginTop="30dp"
             android:id="@+id/visitLayout"
             android:background="@drawable/reactangle_btn">
             <ImageView
@@ -57,19 +63,21 @@
                 android:layout_height="30sp"
                 android:src="@drawable/visitor_purpose"
                 android:id="@+id/img2"
-                android:layout_centerVertical="true"
+                android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"/>
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="70sp"
                 android:layout_toEndOf="@+id/img2"
-                android:layout_centerVertical="true"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
-                android:hint="Visit Purpose"
-                android:inputType="text"
+                android:hint="Enquiry"
                 android:textColor="#000000"
+                android:gravity="top|left"
+                android:lines="4"
+                android:minLines="4"
+                android:inputType="textMultiLine"
                 android:backgroundTint="@android:color/transparent"
                 android:id="@+id/visitor_purpose"
                 android:textColorHint="@color/gray"
@@ -94,19 +102,22 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"/>
 
-            <EditText
+            <Spinner
                 android:id="@+id/countryEvent"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:popupBackground="@color/white"
-                android:hint="Country"
-                android:textSize="18sp"
-                android:backgroundTint="@android:color/transparent"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="50dp"
+                android:layout_height="match_parent"
+                android:popupBackground="@color/yellow"
+                android:theme="@style/Spinner"
+                android:saveEnabled="false"
+                android:layout_marginLeft="30sp"
                 />
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/drop"
+                android:layout_marginRight="20dp"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -126,19 +137,22 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"/>
 
-            <EditText
+            <Spinner
                 android:id="@+id/stateEvent"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:popupBackground="@color/white"
-                android:hint="State"
-                android:textSize="18sp"
-                android:backgroundTint="@android:color/transparent"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="50dp"
+                android:layout_height="match_parent"
+                android:popupBackground="@color/yellow"
+                android:theme="@style/Spinner"
+                android:saveEnabled="false"
+                android:layout_marginLeft="30sp"
                 />
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/drop"
+                android:layout_marginRight="20dp"/>
         </RelativeLayout>
 
 
@@ -168,7 +182,7 @@
                 android:textSize="18sp"
                 android:backgroundTint="@android:color/transparent"
                 android:textColor="@color/black"
-                android:textColorHint="@color/black"
+                android:textColorHint="@color/gray"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="50dp"
                 />
@@ -177,7 +191,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="80dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginTop="20dp"
@@ -189,18 +203,20 @@
                 android:layout_height="30sp"
                 android:src="@drawable/location"
                 android:id="@+id/img6"
-                android:layout_centerVertical="true"
+                android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"/>
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="70sp"
                 android:layout_toEndOf="@+id/img6"
-                android:layout_centerVertical="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:hint="Address"
-                android:inputType="text"
+                android:gravity="top|left"
+                android:inputType="textMultiLine"
+                android:lines="4"
+                android:minLines="4"
                 android:textColor="#000000"
                 android:backgroundTint="@android:color/transparent"
                 android:id="@+id/address"
@@ -254,19 +270,21 @@
 
 
         <Button
-            android:layout_width="150dp"
-            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
             android:id="@+id/submit"
             android:layout_below="@+id/linear"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="30sp"
             android:text="Submit"
             android:textColor="#ffffff"
             android:textAllCaps="false"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="30sp"
+            android:layout_marginLeft="50sp"
+            android:layout_marginRight="50sp"
             android:background="@drawable/btn_bg_yellow"/>
 
 
     </RelativeLayout>
-
 </ScrollView>
+</RelativeLayout>

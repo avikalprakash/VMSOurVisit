@@ -6,31 +6,35 @@
     android:layout_height="match_parent"
     tools:context=".FirstStepRegister"
     android:background="@drawable/bg">
-<ImageView
-    android:layout_width="25dp"
-    android:layout_height="25dp"
-    android:src="@drawable/close"
-    android:layout_alignParentRight="true"
-    android:layout_marginRight="10dp"
-    android:layout_marginTop="10dp"
-    android:id="@+id/close"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55sp"
+        android:background="@color/yellow"
+        android:id="@+id/titleLayout">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:text="Visitor Register"
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
+        <ImageView
+            android:layout_width="30sp"
+            android:layout_height="30sp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20sp"
+            android:id="@+id/close"
+            android:src="@drawable/left_arrow"/>
+
+    </RelativeLayout>
+
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/close"
-        android:layout_marginTop="20dp"
-        android:text="First Step"
-        android:id="@+id/title"
-        android:gravity="center_horizontal"
-        android:textColor="#ffffff"
-        android:textSize="20dp"/>
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title"
+        android:layout_below="@+id/titleLayout"
         android:layout_marginTop="20dp"
         android:id="@+id/text2"
         android:text="Please Select Your Visitor Type"

@@ -14,9 +14,9 @@
         android:icon="@drawable/help"
         android:title=""/>
 
-        <item android:id="@+id/terms_condition"
+<!--        <item android:id="@+id/terms_condition"
         android:title=""
-         android:icon="@drawable/terms_policy"/>
+         android:icon="@drawable/terms_policy"/>-->
 
     <item android:id="@+id/logout"
         android:title=""

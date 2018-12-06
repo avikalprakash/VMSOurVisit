@@ -21,70 +21,16 @@
                 android:src="@drawable/logo"/>
         </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="30dp"
-        android:id="@+id/branchLayout"
-        android:visibility="invisible"
-        android:layout_centerVertical="true"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:background="@drawable/reactangle_btn">
-        <!--android:entries="@array/branch_select"-->
 
-        <Spinner
-            android:id="@+id/spinnerBranch"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:prompt="@string/branch_hint"
-            android:popupBackground="@color/white"
-            android:theme="@style/Spinner"
-            />
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/drop"/>
-    </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="300dp"
-            android:id="@+id/eventLayout"
-            android:visibility="invisible"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:background="@drawable/reactangle_btn">
 
-            <Spinner
-                android:id="@+id/spinnerEvent"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:popupBackground="@color/white"
-                android:theme="@style/Spinner"
-                android:saveEnabled="false"
-                />
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/drop"/>
-        </RelativeLayout>
         
         
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:id="@+id/Branch_Event_Select"
+            android:layout_marginTop="200sp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
 
@@ -127,6 +73,66 @@
                     android:layout_marginLeft="50dp"/>
 
             </RadioGroup>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="30dp"
+                android:id="@+id/branchLayout"
+                android:layout_below="@+id/radio"
+                android:visibility="gone"
+                android:background="@drawable/reactangle_btn">
+                <!--android:entries="@array/branch_select"-->
+
+                <Spinner
+                    android:id="@+id/spinnerBranch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:prompt="@string/branch_hint"
+                    android:popupBackground="@color/yellow"
+                    android:theme="@style/Spinner"
+
+
+                    />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/drop"
+                    android:layout_marginRight="20dp"/>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="30dp"
+                android:id="@+id/eventLayout"
+                android:visibility="gone"
+                android:layout_below="@+id/radio"
+                android:background="@drawable/reactangle_btn">
+
+                <Spinner
+                    android:id="@+id/spinnerEvent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:popupBackground="@color/yellow"
+                    android:theme="@style/Spinner"
+                    android:saveEnabled="false"
+                    />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/drop"
+                    android:layout_marginRight="20dp"/>
+            </RelativeLayout>
             <!--<Button
                 android:layout_width="150sp"
                 android:layout_height="50dp"
@@ -140,21 +146,23 @@
                 android:text="Submit"
                 android:background="@drawable/btn_bg_yellow"
                 />-->
+
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:id="@+id/submitBtn"
+                android:layout_below="@+id/radio"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="130dp"
+                android:text="Submit"
+                android:visibility="gone"
+                android:textColor="#ffffff"
+                android:textAllCaps="false"
+                android:background="@drawable/btn_bg_yellow"/>
+
+        </RelativeLayout>
         </RelativeLayout>
 
 
-        <Button
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:id="@+id/submitBtn"
-            android:layout_below="@+id/eventLayout"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:text="Submit"
-            android:visibility="invisible"
-            android:textColor="#ffffff"
-            android:textAllCaps="false"
-            android:background="@drawable/btn_bg_yellow"/>
 
-    </RelativeLayout>
 </ScrollView>

@@ -30,15 +30,31 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.DecimalFormat;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import lueorganisation.winmall.via.ourvisitor.Fragment.EditProfileFragment;
 import lueorganisation.winmall.via.ourvisitor.Fragment.HelpFragment;
 import lueorganisation.winmall.via.ourvisitor.Fragment.HomeFragment;
 import lueorganisation.winmall.via.ourvisitor.Fragment.ProfileFragment;
 import lueorganisation.winmall.via.ourvisitor.Fragment.TermsOfUseFragment;
+import lueorganisation.winmall.via.ourvisitor.Urls.Urls;
 import lueorganisation.winmall.via.ourvisitor.utils.AbsRuntimePermission;
 import lueorganisation.winmall.via.ourvisitor.utils.SaveAccessToken;
 import lueorganisation.winmall.via.ourvisitor.utils.SaveBranchEvent;
@@ -104,7 +120,7 @@ public class MainActivity extends AbsRuntimePermission {
 
                         break;
                     case R.id.profile:
-                        ProfileFragment meFragment= new ProfileFragment();
+                        EditProfileFragment meFragment= new EditProfileFragment();
                         FragmentTransaction transaction5 = getSupportFragmentManager().beginTransaction();
                         transaction5.replace(R.id.containermain, meFragment);
                         transaction5.addToBackStack(null);
@@ -120,7 +136,7 @@ public class MainActivity extends AbsRuntimePermission {
                         break;
 
 
-                    case R.id.terms_condition:
+                /*    case R.id.terms_condition:
 
                         TermsOfUseFragment termsOfUseFragment= new TermsOfUseFragment();
                         FragmentTransaction transaction8 = getSupportFragmentManager().beginTransaction();
@@ -128,7 +144,7 @@ public class MainActivity extends AbsRuntimePermission {
                         transaction8.addToBackStack(null);
                         transaction8.commit();
 
-                        break;
+                        break;*/
 
                     case R.id.logout:
                         proceedMessage();
@@ -146,13 +162,14 @@ public class MainActivity extends AbsRuntimePermission {
                         android.Manifest.permission.CAMERA,
                         android.Manifest.permission.READ_EXTERNAL_STORAGE,
                         android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.ACCESS_FINE_LOCATION,
-                        Manifest.permission.RECORD_AUDIO,
-                        Manifest.permission.ACCESS_COARSE_LOCATION},
+                 //       Manifest.permission.ACCESS_FINE_LOCATION,
+                 //       Manifest.permission.RECORD_AUDIO,
+                //        Manifest.permission.ACCESS_COARSE_LOCATION
+                },
 
                 R.string.msg, REQUEST_PERMISSION);
 
-        getGpsLocation();
+    //    getGpsLocation();
 
     }
 
@@ -194,130 +211,6 @@ public class MainActivity extends AbsRuntimePermission {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-
-    }
-
-
-    private void getGpsLocation() {
-        mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-        if (!mlocManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            alert.setTitle("GPS");
-            alert.setMessage("GPS is turned OFF...\nDo U Want Turn On GPS..");
-            alert.setPositiveButton("Turn on GPS",
-                    new DialogInterface.OnClickListener() {
-                        @TargetApi(Build.VERSION_CODES.M)
-                        @Override
-                        public void onClick(DialogInterface dialog,
-                                            int whichButton) {
-
-                            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                                // TODO: Consider calling
-                                return;
-                            }
-                            mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0,
-                                    (float) 0.01, (android.location.LocationListener) listener);
-                            setCriteria();
-
-                            mlocManager.requestLocationUpdates(
-                                    LocationManager.NETWORK_PROVIDER, 0, (float)
-                                            0.01, (android.location.LocationListener) listener);
-
-                            Intent I = new Intent(
-                                    android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                            startActivity(I);
-
-                        }
-                    });
-            alert.show();
-
-
-        } else {
-
-            mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0,
-                    (float) 0.01, (android.location.LocationListener) listener);
-            mlocManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0,
-                    (float) 0.01, (android.location.LocationListener) listener);
-        }
-        count=0;
-        startTimer();
-
-    }
-
-
-    private void startTimer(){
-        timer1 = new Timer();
-        timerTask = new TimerTask() {
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        count++;
-                        if(count>10)
-                        {
-                            if (myLocation==null){
-                                timer1.cancel();
-                            }
-                        }
-                    }
-                });
-            }
-        };
-
-        timer1.schedule(timerTask, 1000, 1000);
-    }
-
-
-    private final android.location.LocationListener listener = new android.location.LocationListener() {
-        @Override
-        public void onLocationChanged(Location location) {
-            myLocation=location;
-
-
-            if (location.getLatitude() > 0.0) {
-                DecimalFormat df= new DecimalFormat("#.00000000");
-
-                lat=String.valueOf(df.format(location.getLatitude()));
-                lang=String.valueOf(df.format(location.getLongitude()));
-            //    Toast.makeText(getApplicationContext(), lat+", "+lang, Toast.LENGTH_SHORT).show();
-                SaveLatitudeLongitude.getInstance(getApplicationContext()).saveLatitudeLongitude(lat, lang);
-
-                if (location.getAccuracy()>0 && location.getAccuracy()<100) {
-
-                }
-                else
-                {
-
-                }
-            }
-        }
-
-        @Override
-        public void onStatusChanged(String s, int i, Bundle bundle) {
-
-        }
-
-        @Override
-        public void onProviderEnabled(String s) {
-
-        }
-
-        @Override
-        public void onProviderDisabled(String s) {
-
-        }
-
-    };
-
-    public String setCriteria() {
-        Criteria criteria = new Criteria();
-        criteria.setAccuracy(Criteria.ACCURACY_FINE);
-        criteria.setAltitudeRequired(false);
-        criteria.setBearingRequired(false);
-        criteria.setCostAllowed(true);
-        criteria.setPowerRequirement(Criteria.POWER_MEDIUM);
-        String provider = mlocManager.getBestProvider(criteria, true);
-        return provider;
     }
 
 }

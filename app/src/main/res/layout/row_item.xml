@@ -2,11 +2,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="10dp"
+    android:padding="5dp"
     >
 <RelativeLayout
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_height="100sp"
     android:background="@drawable/reactangle_btn"
     >
     <de.hdodenhof.circleimageview.CircleImageView
@@ -14,7 +14,6 @@
         android:layout_height="75sp"
         android:src="@drawable/avatar"
         android:layout_margin="10dp"
-        android:layout_centerVertical="true"
         android:id="@+id/profilePic"/>
 
     <TextView
@@ -22,8 +21,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name Name"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="10dp"
+        android:maxLength="25"
         android:layout_toEndOf="@+id/profilePic"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@android:color/black" />
@@ -37,6 +37,7 @@
         android:layout_toEndOf="@+id/profilePic"
         android:layout_marginTop="5dp"
         android:text="type"
+        android:maxLength="10"
         android:textSize="17dp"
         android:layout_marginLeft="10dp"
         android:textColor="@color/gray" />
@@ -59,6 +60,7 @@
         android:text="City, State, Country"
         android:textSize="12sp"
         android:paddingLeft="10dp"
+        android:maxLength="40"
         android:paddingRight="10dp"
         android:layout_marginLeft="15dp"
         android:textColor="@color/gray"

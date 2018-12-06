@@ -14,16 +14,16 @@
         android:text="Logout ?"
         android:textSize="20dp"
         android:layout_marginTop="30dp"
-        android:textColor="#FF0033"
+        android:textColor="@color/yellow"
         android:textStyle="bold|italic" />
 
     <View
-        android:layout_width="50dp"
+        android:layout_width="90dp"
         android:layout_height="2dp"
         android:layout_marginTop="10dp"
         android:id="@+id/view"
         android:layout_centerHorizontal="true"
-        android:background="#FF0033"
+        android:background="@color/yellow"
         android:layout_below="@+id/titleText"
         />
     <android.support.v7.widget.AppCompatTextView
@@ -35,7 +35,7 @@
         android:layout_marginTop="10dp"
         android:layout_below="@+id/view"
         android:text="Are you sure you want to\n logout ?"
-        android:textColor="#FF0033"
+        android:textColor="@color/yellow"
         android:textStyle="bold|italic" />
     <Button
         android:layout_width="90dp"

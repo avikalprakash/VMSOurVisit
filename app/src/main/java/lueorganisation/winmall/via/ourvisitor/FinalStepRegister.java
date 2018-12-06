@@ -1,11 +1,14 @@
 package lueorganisation.winmall.via.ourvisitor;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -59,7 +62,7 @@ public class FinalStepRegister extends AppCompatActivity implements View.OnClick
     ImageView close;
     String gender="";
     EditText visitorText,  addressText, cityEvent;
-    EditText countryEvent, stateEvent;
+    Spinner countryEvent, stateEvent;
     TextView genderText;
     String name, mobile, email, profile_pic, card_pic, visitor_type;
     private ArrayList<Country> countryArrayList;
@@ -80,8 +83,13 @@ public class FinalStepRegister extends AppCompatActivity implements View.OnClick
     String VisitType_Branch_event="";
     String imageProfile;
     String imageCard;
-
+    Context context;
     boolean isNew;
+    String oldId="";
+    int getID;
+    int getStateID;
+    boolean y=false;
+    boolean xy=false;
 
 
 
@@ -96,7 +104,6 @@ public class FinalStepRegister extends AppCompatActivity implements View.OnClick
         visitorText = findViewById(R.id.visitor_purpose);
         countryEvent = findViewById(R.id.countryEvent);
         stateEvent = findViewById(R.id.stateEvent);
-     //   citySpinner = findViewById(R.id.cityEvent);
         cityEvent = findViewById(R.id.cityEvent);
         addressText = findViewById(R.id.address);
         genderText = findViewById(R.id.genderText);
@@ -104,17 +111,14 @@ public class FinalStepRegister extends AppCompatActivity implements View.OnClick
         female.setOnClickListener(this);
         submit.setOnClickListener(this);
         close.setOnClickListener(this);
+        context = this;
         name = getIntent().getStringExtra("name");
         mobile = getIntent().getStringExtra("mobile");
         email = getIntent().getStringExtra("email");
-      //  profile_pic = getIntent().getStringExtra("profile_pic");
-      //  card_pic = getIntent().getStringExtra("card_pic");
+        oldId = getIntent().getStringExtra("old_id");
         imageProfile = getIntent().getStringExtra("profile_pic");
         imageCard = getIntent().getStringExtra("card_pic");
         visitor_type = getIntent().getStringExtra("visitor_type");
-
-
-
 
         gender = getIntent().getStringExtra("gender");
         address = getIntent().getStringExtra("address");
@@ -123,11 +127,7 @@ public class FinalStepRegister extends AppCompatActivity implements View.OnClick
         country = getIntent().getStringExtra("country");
         visitor_purpose = getIntent().getStringExtra("visitor_purpose");
         isNew = getIntent().getBooleanExtra("isNew", isNew);
-        if (isNew) {
-            String lat = SaveLatitudeLongitude.getInstance(FinalStepRegister.this).getLatitude();
-            String lang = SaveLatitudeLongitude.getInstance(FinalStepRegister.this).getLongitude();
-            getAddress(Double.parseDouble(lat), Double.parseDouble(lang));
-        }
+
 
         if (!gender.equals("")){
             if (gender.equals("Male")){
@@ -158,12 +158,7 @@ public class FinalStepRegister extends AppCompatActivity implements View.OnClick
         if (!visitor_purpose.equals("")){
             visitorText.setText(visitor_purpose);
         }
-        if (!country.equals("")){
-            countryEvent.setText(country);
-        }
-        if (!state.equals("")){
-            stateEvent.setText(state);
-        }
+
 
 
 
@@ -179,7 +174,7 @@ public class FinalStepRegister extends AppCompatActivity implements View.OnClick
 
 
 
-/*        countrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        countryEvent.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 try {
@@ -195,9 +190,9 @@ public class FinalStepRegister extends AppCompatActivity implements View.OnClick
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
-        });*/
+        });
 
-/*        stateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        stateEvent.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 try {
@@ -213,7 +208,7 @@ public class FinalStepRegister extends AppCompatActivity implements View.OnClick
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
-        });*/
+        });
 
      /*   citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -232,37 +227,11 @@ public class FinalStepRegister extends AppCompatActivity implements View.OnClick
 
             }
         });*/
+
+        loadCountryList();
     }
 
-    private  String getAddress(double lat,double lang)
-    {
-        Geocoder geocoder;
-        List<Address> addresses;
-        geocoder = new Geocoder(this, Locale.getDefault());
-        String address="";
 
-        try {
-            addresses = geocoder.getFromLocation(lat,lang,1);
-
-            city=addresses.get(0).getLocality();
-            state=addresses.get(0).getAdminArea();
-            country=addresses.get(0).getCountryName();
-
-            countryEvent.setText(country);
-            stateEvent.setText(state);
-            cityEvent.setText(city);
-
-            Log.d("TAG", "getAddress:  city" + city);
-            Log.d("TAG", "getAddress:  state" + state);
-
-            //  address=addresses.get(0).getSubLocality()+","+addresses.get(0).getLocality()+", "+addresses.get(0).getPostalCode()
-            //      +", "+addresses.get(0).getCountryName()+", "+addresses.get(0).getAdminArea();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return address;
-    }
 
     @Override
     public void onClick(View view) {
@@ -336,7 +305,7 @@ public class FinalStepRegister extends AppCompatActivity implements View.OnClick
         }
     }
 
-/*    private void loadCountryList() {
+    private void loadCountryList() {
         //getting the progressbar
         final String access_token = SaveAccessToken.getInstance(FinalStepRegister.this).getUserId();
         final ProgressDialog progressDialog = new ProgressDialog(FinalStepRegister.this);
@@ -376,7 +345,7 @@ public class FinalStepRegister extends AppCompatActivity implements View.OnClick
                                     if (id >= 0 && name != null) {
                                         Country country = new Country(id, name);
                                         countryArrayList.add(country);
-                                        populateBranchSpinner();
+                                        populateCountrySpinner();
                                     }
 
 
@@ -424,41 +393,139 @@ public class FinalStepRegister extends AppCompatActivity implements View.OnClick
 
 
 
-    }*/
+    }
 
-/*    private void populateBranchSpinner() {
-        List<String> lables = new ArrayList<String>();
+    private void populateCountrySpinner() {
+        ArrayList<String> lables = new ArrayList<String>();
         //  branchSpinner.setText("");
         for (int i = 0; i < countryArrayList.size(); i++) {
             lables.add(countryArrayList.get(i).getName());
         }
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this,
                 R.layout.branchlist_item, lables);
-        countrySpinner.setAdapter(spinnerAdapter);
+        countryEvent.setAdapter(spinnerAdapter);
+
         if(lables != null) {
-            countrySpinner.setEnabled(true);
+            countryEvent.setEnabled(true);
+            //for testing
+            if (isNew) {
+                try {
+                    String locale;
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        locale = context.getResources().getConfiguration().getLocales().get(0).getCountry();
+                    } else {
+                        locale = context.getResources().getConfiguration().locale.getCountry();
+                    }
+                    Locale loc = new Locale("",locale);
+                    String countryName =  loc.getDisplayCountry();
+                    if(lables.size()>0) {
+                        int i;
+
+                        for (i= 0; i < countryArrayList.size(); i++) {
+                            if (countryName.equals(countryArrayList.get(i).getName())){
+                                getID = countryArrayList.get(i).getId();
+                            //    Toast.makeText(context, String.valueOf(getID), Toast.LENGTH_SHORT).show();
+                                new Handler().postDelayed(new Runnable() {
+                                    public void run() {
+                                        countryEvent.setSelection(getID);
+                                    }
+                                }, 100);
+
+
+                                y=true;
+                                break;
+                            }
+                            if (y){
+                                break;
+                            }
+
+                        }
+                    }
+
+                }catch (Exception e){}
+            }else {
+                try {
+                    if(lables.size()>0) {
+                        int i;
+                        for (i= 0; i < countryArrayList.size(); i++) {
+                            String c = countryArrayList.get(i).getName();
+                            if (country.equals(countryArrayList.get(i).getName())){
+                                getID = countryArrayList.get(i).getId();
+                                //    Toast.makeText(context, String.valueOf(getID), Toast.LENGTH_SHORT).show();
+                                new Handler().postDelayed(new Runnable() {
+                                    public void run() {
+                                        countryEvent.setSelection(getID);
+                                    }
+                                }, 100);
+
+
+                                y=true;
+                                break;
+                            }
+                            if (y){
+                                break;
+                            }
+
+                        }
+                    }
+
+                }catch (Exception e){}
+            }
+
+            //till here
         }
         else {
-            countrySpinner.setEnabled(false);
+            countryEvent.setEnabled(false);
         }
-    }*/
+    }
 
-/*    private void populateStateSpinner() {
-        List<String> lables = new ArrayList<String>();
+    private void populateStateSpinner() {
+        ArrayList<String> lables = new ArrayList<String>();
         //  branchSpinner.setText("");
         for (int i = 0; i < stateArrayList.size(); i++) {
             lables.add(stateArrayList.get(i).getName());
         }
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this,
                 R.layout.branchlist_item, lables);
-        stateSpinner.setAdapter(spinnerAdapter);
+        stateEvent.setAdapter(spinnerAdapter);
         if(lables != null) {
-            stateSpinner.setEnabled(true);
+            stateEvent.setEnabled(true);
+           if (!isNew){
+                try {
+                    if(lables.size()>0) {
+                        int j;
+                        String s;
+                        for (j= 0; j < stateArrayList.size(); j++) {
+                            s = stateArrayList.get(j).getName();
+                           // Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
+                            Log.d("state", s);
+
+                            if (state.equals(stateArrayList.get(j).getName())){
+                                getStateID = stateArrayList.get(j).getId();
+                                //    Toast.makeText(context, String.valueOf(getID), Toast.LENGTH_SHORT).show();
+                                new Handler().postDelayed(new Runnable() {
+                                    public void run() {
+                                        stateEvent.setSelection(getStateID);
+                                    }
+                                }, 100);
+
+
+                                xy=true;
+                                break;
+                            }
+                            if (xy){
+                                break;
+                            }
+                        }
+                    }
+
+                }catch (Exception e){}
+            }
         }
         else {
-            stateSpinner.setEnabled(false);
+            stateEvent.setEnabled(false);
         }
-    }*/
+    }
 
 
     public String getStringImage(Bitmap bmp){
@@ -490,7 +557,7 @@ public class FinalStepRegister extends AppCompatActivity implements View.OnClick
         }
     }*/
 
-/*
+
     private void loadStateList() {
         //getting the progressbar
         final String access_token = SaveAccessToken.getInstance(FinalStepRegister.this).getUserId();
@@ -580,7 +647,7 @@ public class FinalStepRegister extends AppCompatActivity implements View.OnClick
 
 
 
-    }*/
+    }
 
 
 
@@ -683,17 +750,16 @@ public class FinalStepRegister extends AppCompatActivity implements View.OnClick
         if (VisitType_Branch_event.equals("1")){
             visitor_for= "Branch";
         }else if (VisitType_Branch_event.equals("2")){
-            visitor_for= "Branch";
+            visitor_for= "Event";
         }
         pDialog = new ProgressDialog(FinalStepRegister.this);
         pDialog.setMessage("loading...");
         pDialog.show();
         Map<String, String> postParam = new HashMap<String, String>();
 
-        postParam.put("v_name", email);
+        postParam.put("v_name", name);
         postParam.put("visitor_for", visitor_for);
         postParam.put("v_email", email);
-        postParam.put("visitor_for", visitor_type);
         postParam.put("v_mobile", mobile);
         postParam.put("v_gender", gender);
         postParam.put("v_country", country);
@@ -702,9 +768,9 @@ public class FinalStepRegister extends AppCompatActivity implements View.OnClick
         postParam.put("v_address", address);
         postParam.put("zip_code", "");
         postParam.put("v_v_purpose", visitor);
-        postParam.put("v_type", email);
+        postParam.put("v_type", visitor_type);
         postParam.put("v_event_id", EventID);
-        postParam.put("v_old_id", "");
+        postParam.put("v_old_id", oldId);
         postParam.put("is_new", String.valueOf(isNew));
         postParam.put("v_org_id", BranchID);
         postParam.put("base64_id_proof", imageCard);

@@ -1,40 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
     android:background="@drawable/bg">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-<ImageView
-    android:layout_width="20sp"
-    android:layout_height="20sp"
-    android:layout_alignParentRight="true"
-    android:layout_marginTop="20dp"
-    android:src="@drawable/close"
-    android:id="@+id/close"
-    android:layout_marginRight="20dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sign Up"
-            android:textColor="#ffffff"
-            android:layout_below="@+id/close"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:textSize="15dp"
-            android:id="@+id/title"/>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="55sp"
+            android:background="@color/yellow"
+            android:id="@+id/titleLayout">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:text="Organisation Register"
+                android:textColor="@color/white"
+                android:textSize="20sp"/>
+            <ImageView
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20sp"
+                android:id="@+id/close"
+                android:src="@drawable/left_arrow"/>
+
+        </RelativeLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/titleLayout">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="50dp"
             android:layout_below="@+id/title"
             android:id="@+id/orgLayout"
             android:background="@drawable/reactangle_btn">
@@ -278,17 +287,20 @@
 
 
         <Button
-            android:layout_width="150dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:id="@+id/signup"
             android:layout_below="@+id/zipcodeLayout"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:text="Sign Up"
+            android:layout_marginTop="30dp"
+            android:text="Register"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:textColor="#ffffff"
             android:textAllCaps="false"
             android:layout_marginBottom="30dp"
             android:background="@drawable/btn_bg_yellow"/>
+            </RelativeLayout>
+        </ScrollView>
 
-    </RelativeLayout>
-</ScrollView>
+</RelativeLayout>

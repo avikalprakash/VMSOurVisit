@@ -4,11 +4,13 @@ package lueorganisation.winmall.via.ourvisitor.Fragment;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +45,7 @@ public class ProfileFragment extends Fragment {
    ProgressDialog pDialog;
     String photo,email,name,mobile, org_id;
     CircleImageView logo;
+    Button edtpro_btn;
     TextView nme_txt, orgText, email_txt, mobile_txt;
 
 
@@ -60,7 +63,18 @@ public class ProfileFragment extends Fragment {
         orgText = view.findViewById(R.id.membertype_txt);
         email_txt = view.findViewById(R.id.email_txt);
         mobile_txt = view.findViewById(R.id.mobile_txt);
+        edtpro_btn = view.findViewById(R.id.edtpro_btn);
         loadProfileDetails();
+        edtpro_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ProfileFragment meFragment= new ProfileFragment();
+                FragmentTransaction transaction5 = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction5.replace(R.id.containermain, meFragment);
+                transaction5.addToBackStack(null);
+                transaction5.commit();
+            }
+        });
         return view;
     }
 

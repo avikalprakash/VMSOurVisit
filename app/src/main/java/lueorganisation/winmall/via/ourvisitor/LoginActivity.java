@@ -1,6 +1,7 @@
 package lueorganisation.winmall.via.ourvisitor;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -121,10 +123,13 @@ public class LoginActivity extends AppCompatActivity {
                             {
                                 String msg = jobj.getString("msg");
                                 String Access_Token = jobj.getString("Access-Token");
-                                session.createUserLoginSession(Access_Token);
+                             //   session.createUserLoginSession(Access_Token);
+                                DeleteCache.deleteCache(getApplicationContext());
                                 SaveAccessToken.getInstance(getApplicationContext()).saveuserId(Access_Token);
                                 Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getApplicationContext(), BranchEventSelection.class));
+                                Intent i = new Intent(getApplicationContext(), BranchEventSelection.class);
+                                i.putExtra("Access-Token", Access_Token);
+                                startActivity(i);
                                 finish();
 
                             }
@@ -132,6 +137,7 @@ public class LoginActivity extends AppCompatActivity {
                             else
                             {
                                 String msg = jobj.getString("msg");
+                             //   DeleteCache.deleteCache(getApplicationContext());
                                 Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
                             }
 
@@ -167,4 +173,6 @@ public class LoginActivity extends AppCompatActivity {
         queue.add(jsonObjReq);
 
     }
+
+
 }
